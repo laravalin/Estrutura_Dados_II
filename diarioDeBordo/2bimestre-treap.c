@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-// estrutura do nó da Treap
+// estrutura do nó da treap
 typedef struct NoTreap {
     int chave;
     int prioridade;
@@ -12,7 +12,7 @@ typedef struct NoTreap {
     struct NoTreap* direito;
 } NoTreap;
 
-// função para criar um novo nó
+// cria um novo nó
 NoTreap* criarNo(int chave) {
     NoTreap* novoNo = (NoTreap*)malloc(sizeof(NoTreap));
     novoNo->chave = chave;
@@ -22,7 +22,7 @@ NoTreap* criarNo(int chave) {
     return novoNo;
 }
 
-// função para rotacionar o nó para a direita
+// rotaciona o nó para a direita
 NoTreap* rotacionarDireita(NoTreap* no) {
     NoTreap* novoNo = no->esquerdo;
     no->esquerdo = novoNo->direito;
@@ -30,7 +30,7 @@ NoTreap* rotacionarDireita(NoTreap* no) {
     return novoNo;
 }
 
-// função para rotacionar o nó para a esquerda
+// rotaciona o nó para a esquerda
 NoTreap* rotacionarEsquerda(NoTreap* no) {
     NoTreap* novoNo = no->direito;
     no->direito = novoNo->esquerdo;
@@ -38,7 +38,7 @@ NoTreap* rotacionarEsquerda(NoTreap* no) {
     return novoNo;
 }
 
-// função para inserir um novo nó na Treap
+// insere um novo nó na treap
 NoTreap* inserir(NoTreap* no, int chave) {
     if (no == NULL) {
         return criarNo(chave);
@@ -59,7 +59,7 @@ NoTreap* inserir(NoTreap* no, int chave) {
     return no;
 }
 
-// função para remover um nó da Treap
+// remove um nó da treap
 NoTreap* remover(NoTreap* no, int chave) {
     if (no == NULL) {
         return NULL;
@@ -92,7 +92,7 @@ NoTreap* remover(NoTreap* no, int chave) {
     return no;
 }
 
-// função para percorrer a Treap em ordem crescente
+// percorre a treap em ordem crescente
 void inorder(NoTreap* no) {
     if (no != NULL) {
         inorder(no->esquerdo);
@@ -105,11 +105,11 @@ int main() {
     srand(time(NULL));  // inicializar no de número aleatório
     NoTreap* treap = NULL;
 
-    // chaves a serem inseridas na Treap
+    // chaves a serem inseridas na treap
     int chaves[] = {50, 30, 20, 40, 70, 60, 80};
     int n = sizeof(chaves) / sizeof(chaves[0]);
 
-    // inserir chaves na Treap
+    // inserir chaves na treap
     for (int i = 0; i < n; i++) {
         treap = inserir(treap, chaves[i]);
     }
@@ -118,7 +118,7 @@ int main() {
     inorder(treap);
     printf("\n");
 
-    // remover chave 50 e imprimir novamente
+    // remove chave 50 e imprimi novamente
     treap = remover(treap, 50);
     printf("Elementos da Treap em ordem após remover 50:\n");
     inorder(treap);
